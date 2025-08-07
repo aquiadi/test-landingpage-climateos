@@ -2,34 +2,19 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
 import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-// Import Firebase configuration
-import { firebaseConfig } from './firebase-config.js';
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCX3sz4zgX4NCZ_7be1uRWIVnnyABRwcAc",
+  authDomain: "coming-soon-emails.firebaseapp.com",
+  projectId: "coming-soon-emails",
+  storageBucket: "coming-soon-emails.firebasestorage.app",
+  messagingSenderId: "408306020232",
+  appId: "1:408306020232:web:d1642739e8c38a2605d43d"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
-// Theme Toggle Functionality
-const themeToggle = document.getElementById('themeToggle');
-const toggleIcon = document.querySelector('.toggle-icon');
-
-// Check for saved theme or default to light mode
-const savedTheme = localStorage.getItem('theme') || 'light';
-document.documentElement.setAttribute('data-theme', savedTheme);
-updateToggleIcon(savedTheme);
-
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateToggleIcon(newTheme);
-});
-
-function updateToggleIcon(theme) {
-    toggleIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
-}
 
 // Function to save email to Firebase
 async function saveEmail(email) {
@@ -87,6 +72,7 @@ document.getElementById('emailForm').addEventListener('submit', async function(e
     }
 });
 
+// Handle demo button click
 document.getElementById('demoBtn').addEventListener('click', function(e) {
     e.preventDefault();
     alert('Demo coming soon!');
