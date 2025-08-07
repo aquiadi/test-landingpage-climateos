@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* CSS Variables for Light/Dark Mode */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --heading-color: #2c3e50;
+    --subtitle-color: #666;
+    --input-bg: #fff;
+    --input-border: #e1e8ed;
+    --input-border-focus: #3498db;
+    --btn-primary-bg: #3498db;
+    --btn-primary-hover: #2980b9;
+    --btn-secondary-bg: #fff;
+    --btn-secondary-color: #3498db;
+    --btn-secondary-border: #3498db;
+    --notification-success: #27ae60;
+    --notification-error: #e74c3c;
+    --toggle-bg: #ddd;
+    --toggle-dot: #fff;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+    --subtitle-color: #b0b0b0;
+    --input-bg: #2d2d2d;
+    --input-border: #404040;
+    --input-border-focus: #4a9eff;
+    --btn-primary-bg: #4a9eff;
+    --btn-primary-hover: #357abd;
+    --btn-secondary-bg: #2d2d2d;
+    --btn-secondary-color: #4a9eff;
+    --btn-secondary-border: #4a9eff;
+    --notification-success: #2ecc71;
+    --notification-error: #e67e22;
+    --toggle-bg: #4a4a4a;
+    --toggle-dot: #fff;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: var(--toggle-bg);
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+.toggle-switch:hover {
+    opacity: 0.8;
+}
+
+.toggle-dot {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--toggle-dot);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+[data-theme="dark"] .toggle-dot {
+    transform: translateX(30px);
+}
+
+.toggle-icon {
+    font-size: 14px;
+}
+
+.container {
+    text-align: center;
+    max-width: 90%;
+    width: 100%;
+    padding: 2rem 1rem;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+        padding: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 600px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 500px;
+    }
+}
+
+h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--heading-color);
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: var(--subtitle-color);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.email-form {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.email-input {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 16px;
+    font-size: clamp(14px, 3vw, 16px);
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    box-sizing: border-box;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+.email-input:focus {
+    border-color: var(--input-border-focus);
+}
+
+.email-input::placeholder {
+    color: var(--subtitle-color);
+    transition: color 0.3s ease;
+}
+
+.btn {
+    padding: 14px 24px;
+    font-size: clamp(14px, 3vw, 16px);
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    min-height: 50px;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: white;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-primary-hover);
+}
+
+.btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-color);
+    border: 2px solid var(--btn-secondary-border);
+    width: 100%;
+}
+
+.btn-secondary:hover {
+    background-color: var(--btn-secondary-color);
+    color: white;
+}
+
+@media (min-width: 480px) {
+    .btn-secondary {
+        width: auto;
+        min-width: 150px;
+    }
+}
+
+.notification {
+    background-color: var(--notification-success);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 1rem;
+    display: none;
+    transition: background-color 0.3s ease;
+}
+
+.notification.show {
+    display: block;
+}
+
+.notification.error {
+    background-color: var(--notification-error);
+}
+
+@media (max-width: 479px) {
+    .container {
+        padding: 1.5rem 1rem;
+        max-width: 95%;
+    }
+    
+    h1 {
+        margin-bottom: 0.8rem;
+    }
+    
+    .subtitle {
+        margin-bottom: 1.5rem;
+    }
+    
+    .email-input {
+        padding: 16px;
+        margin-bottom: 1rem;
+    }
+    
+    .btn {
+        padding: 16px 20px;
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        padding: 1rem 0.5rem;
+    }
+    
+    .btn {
+        padding: 18px 16px;
+        font-size: 14px;
+    }
+}
